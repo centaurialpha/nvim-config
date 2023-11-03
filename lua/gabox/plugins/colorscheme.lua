@@ -1,7 +1,11 @@
 return {
-  "nyoom-engineering/oxocarbon.nvim",
+  "navarasu/onedark.nvim",
+  lazy = false,
   priority = 1000,
   config = function()
-    vim.cmd("colorscheme oxocarbon")
+    require("onedark").setup({
+      style = "darker",
+    })
+    vim.cmd("colorscheme onedark")
   end
 }

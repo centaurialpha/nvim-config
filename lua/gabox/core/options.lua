@@ -23,3 +23,5 @@ opt.splitright = true
 opt.splitbelow = true
 
 opt.swapfile = false
+
+opt.completeopt = {'menu', 'menuone', 'noselect'}
