@@ -1,8 +1,8 @@
 return {
-  'nvim-telescope/telescope.nvim',
-  branch = '0.1.x',
+  "nvim-telescope/telescope.nvim",
+  branch = "0.1.x",
   dependencies = {
-    'nvim-lua/plenary.nvim',
+    "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
 
@@ -15,5 +15,5 @@ return {
 
     vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>")
     vim.keymap.set("n", "<leader>fw", "<cmd>Telescope live_grep<CR>")
-  end
+  end,
 }

@@ -4,5 +4,5 @@ return {
     local nvimtree = require("nvim-tree")
     nvimtree.setup({})
     vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>")
-  end
+  end,
 }

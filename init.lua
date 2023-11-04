@@ -1,4 +1,5 @@
 require("gabox.core")
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -25,11 +26,11 @@ require("lazy").setup({
 
   { import = "gabox.plugins" },
 }, {
-    checker = {
-      enabled = true,
-      notify = false,
-    },
-    change_detection = {
-      notify = false,
-    },
-  })
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+})

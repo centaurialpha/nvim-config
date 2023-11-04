@@ -11,5 +11,5 @@ return {
         untracked = { text = "│" },
       },
     })
-  end
+  end,
 }

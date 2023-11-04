@@ -1,27 +1,27 @@
 local colors = {
-  bg       = '#202328',
-  fg       = '#bbc2cf',
-  yellow   = '#ECBE7B',
-  cyan     = '#008080',
-  darkblue = '#081633',
-  green    = '#98be65',
-  orange   = '#FF8800',
-  violet   = '#a9a1e1',
-  magenta  = '#c678dd',
-  blue     = '#51afef',
-  red      = '#ec5f67',
+  bg = "#202328",
+  fg = "#bbc2cf",
+  yellow = "#ECBE7B",
+  cyan = "#008080",
+  darkblue = "#081633",
+  green = "#98be65",
+  orange = "#FF8800",
+  violet = "#a9a1e1",
+  magenta = "#c678dd",
+  blue = "#51afef",
+  red = "#ec5f67",
 }
 
 local conditions = {
   buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+    return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
   end,
   hide_in_width = function()
     return vim.fn.winwidth(0) > 80
   end,
   check_git_workspace = function()
-    local filepath = vim.fn.expand('%:p:h')
-    local gitdir = vim.fn.finddir('.git', filepath .. ';')
+    local filepath = vim.fn.expand("%:p:h")
+    local gitdir = vim.fn.finddir(".git", filepath .. ";")
     return gitdir and #gitdir > 0 and #gitdir < #filepath
   end,
 }
@@ -31,13 +31,13 @@ local color_mode = function()
     n = colors.red,
     i = colors.green,
     v = colors.blue,
-    [''] = colors.blue,
+    [""] = colors.blue,
     V = colors.blue,
     c = colors.magenta,
     no = colors.red,
     s = colors.orange,
     S = colors.orange,
-    [''] = colors.orange,
+    [""] = colors.orange,
     ic = colors.yellow,
     R = colors.violet,
     Rv = colors.violet,
@@ -45,8 +45,8 @@ local color_mode = function()
     ce = colors.red,
     r = colors.cyan,
     rm = colors.cyan,
-    ['r?'] = colors.cyan,
-    ['!'] = colors.red,
+    ["r?"] = colors.cyan,
+    ["!"] = colors.red,
     t = colors.red,
   }
   return { fg = modes_colors[vim.fn.mode()] }
@@ -54,8 +54,8 @@ end
 
 local config = {
   options = {
-    component_separators = '',
-    section_separators = '',
+    component_separators = "",
+    section_separators = "",
     -- theme = {
     --   -- We are going to use lualine_c an lualine_x as left and
     --   -- right section. Both are highlighted by c theme .  So we
@@ -100,54 +100,66 @@ return {
   config = function()
     local lualine = require("lualine")
 
-    ins_left {
-      function() return '▊' end,
-      color = function() return color_mode() end,
+    ins_left({
+      function()
+        return "▊"
+      end,
+      color = function()
+        return color_mode()
+      end,
       padding = { left = 0, right = 1 },
-    }
-    ins_left {
-      function() return '' end,
-      color = function() return color_mode() end,
+    })
+    ins_left({
+      function()
+        return ""
+      end,
+      color = function()
+        return color_mode()
+      end,
       padding = { right = 1 },
-    }
-    ins_right {
-      'filetype',
+    })
+    ins_right({
+      "filetype",
       fmt = string.upper,
-      color = { fg = colors.orange, gui = 'bold' },
-    }
-    ins_left {
-      'filename',
+      color = { fg = colors.orange, gui = "bold" },
+    })
+    ins_left({
+      "filename",
       cond = conditions.buffer_not_empty,
-      color = { fg = colors.magenta, gui = 'bold' },
-    }
-    ins_left {
-      'branch',
-      icon = '',
-      color = { fg = colors.violet, gui = 'bold' },
-    }
-    ins_left {
-      'diagnostics',
-      sources = { 'nvim_diagnostic' },
-      symbols = { error = ' ', warn = ' ', info = ' ' },
+      color = { fg = colors.magenta, gui = "bold" },
+    })
+    ins_left({
+      "branch",
+      icon = "",
+      color = { fg = colors.violet, gui = "bold" },
+    })
+    ins_left({
+      "diagnostics",
+      sources = { "nvim_diagnostic" },
+      symbols = { error = " ", warn = " ", info = " " },
       diagnostics_color = {
         color_error = { fg = colors.red },
         color_warn = { fg = colors.yellow },
         color_info = { fg = colors.cyan },
       },
-    }
+    })
 
-    ins_right {
-      'o:encoding',
+    ins_right({
+      "o:encoding",
       fmt = string.upper,
       cond = conditions.hide_in_width,
-      color = { fg = colors.green, gui = 'bold' },
-    }
-    ins_right {
-      function() return '▊' end,
-      color = function() return color_mode() end,
+      color = { fg = colors.green, gui = "bold" },
+    })
+    ins_right({
+      function()
+        return "▊"
+      end,
+      color = function()
+        return color_mode()
+      end,
       padding = { left = 1, right = 0 },
-    }
+    })
 
     lualine.setup(config)
-  end
+  end,
 }
