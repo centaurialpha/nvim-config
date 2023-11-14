@@ -13,6 +13,11 @@ return {
           },
         },
       },
+      overrides = function(colors)
+        return {
+          CursorLine = { bg = "#242430" },
+        }
+      end
     })
     vim.cmd("colorscheme kanagawa-wave")
   end,

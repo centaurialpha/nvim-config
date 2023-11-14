@@ -5,6 +5,9 @@ return {
     "williamboman/mason-lspconfig.nvim",
   },
   config = function()
+    vim.diagnostic.config({
+      virtual_text = false,
+    })
     local lspconfig = require("lspconfig")
 
     local on_attach = function(_, bufnr)

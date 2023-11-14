@@ -54,6 +54,7 @@ end
 
 local config = {
   options = {
+    disabled_filetypes = { "NvimTree" },
     component_separators = "",
     section_separators = "",
     -- theme = {

@@ -15,6 +15,14 @@ return {
 
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local lspkind = require("lspkind")
+
+    lspkind.init({
+      symbol_map = {
+        Copilot = "",
+      },
+    })
+    vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
     local select_opts = { behavior = cmp.SelectBehavior.Select }
 
     cmp.setup({
@@ -28,26 +36,35 @@ return {
       },
       formatting = {
         fields = { "menu", "abbr", "kind" },
-        format = function(entry, item)
-          local menu_icon = {
-            nvim_lsp = "λ",
-            luasnip = "⋗",
-            buffer = "Ω",
-            path = "🖫",
-          }
+        format = lspkind.cmp_format({
+          mode = "symbol",
+          max_width = 50,
+          symbol_map = { Copilot = "", nvim_lsp = "AAAA" },
+        }),
+        -- format = function(entry, item)
+        --   local menu_icon = {
+        --     nvim_lsp = "λ",
+        --     luasnip = "⋗",
+        --     buffer = "Ω",
+        --     path = "🖫",
+        --   }
 
-          item.menu = menu_icon[entry.source.name]
-          return item
-        end,
+        --   item.menu = menu_icon[entry.source.name]
+        --   return item
+        -- end,
       },
       window = {
         documentation = cmp.config.window.bordered(),
       },
       sources = {
-        { name = "path" },
-        { name = "nvim_lsp", keyword_length = 1 },
-        { name = "buffer", keyword_length = 3 },
-        { name = "luasnip", keyword_length = 2 },
+        { name = "copilot", group_index = 2 },
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "path", group_index = 2 },
+        { name = "luasnip", group_index = 2 },
+        -- { name = "path" },
+        -- { name = "nvim_lsp", keyword_length = 1 },
+        -- { name = "buffer", keyword_length = 3 },
+        -- { name = "luasnip", keyword_length = 2 },
       },
       mapping = {
         ["<Up>"] = cmp.mapping.select_prev_item(select_opts),
@@ -102,89 +119,3 @@ return {
     })
   end,
 }
--- local function border(hl_name)
---   return {
---     { "╭", hl_name },
---     { "─", hl_name },
---     { "╮", hl_name },
---     { "│", hl_name },
---     { "╯", hl_name },
---     { "─", hl_name },
---     { "╰", hl_name },
---     { "│", hl_name },
---   }
--- end
---
--- return {
---   "hrsh7th/nvim-cmp",
---   event = "InsertEnter",
---   dependencies = {
---     "hrsh7th/cmp-nvim-lsp",
---     "hrsh7th/cmp-buffer",
---     "hrsh7th/cmp-path",
---     "L3MON4D3/LuaSnip",
---     "saadparwaiz1/cmp_luasnip",
---     "rafamadriz/friendly-snippets",
---     "onsails/lspkind.nvim",
---   },
---   config = function()
---     local cmp = require("cmp")
---     local luasnip = require("luasnip")
---     local lspkind = require("lspkind")
---
---     require("luasnip.loaders.from_vscode").lazy_load()
---
---     cmp.setup({
---       completion = {
---         winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
---         scrollbar = false,
---         autocomplete = false,
---         -- completeopt = "menu,menuone,preview,noselect",
---         snippet = { -- configure how nvim-cmp interacts with snippet engine
---         expand = function(args)
---           luasnip.lsp_expand(args.body)
---         end,
---         },
---       },
---       preselect = cmp.PreselectMode.None,
---       window = {
---         documentation = {
---           border = border "CmpDocBorder",
---           winhighlight = "Normal:CmpDoc",
---         },
---         completion = cmp.config.window.bordered({
---           border = border "CmpBorder",
---           winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel",
---         }),
---       },
---       snippet = { -- configure how nvim-cmp interacts with snippet engine
---         expand = function(args)
---           luasnip.lsp_expand(args.body)
---         end,
---       },
---       sources = cmp.config.sources({
---         { name = "nvim_lsp" },
---         { name = "buffer" },
---         { name = "luasnip" },
---         { name = "path" },
---       }),
---       mapping = cmp.mapping.preset.insert {
---         ['<C-n>'] = cmp.mapping.select_next_item(),
---         ['<C-p>'] = cmp.mapping.select_prev_item(),
---         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
---         ['<C-f>'] = cmp.mapping.scroll_docs(4),
---         ['<C-Space>'] = cmp.mapping.complete {},
---         ['<CR>'] = cmp.mapping.confirm {
---           behavior = cmp.ConfirmBehavior.Replace,
---           select = true,
---         },
---       },
---       formatting = {
---         format = lspkind.cmp_format({
---           maxwidth = 50,
---           ellipsis_char = "...",
---         }),
---       },
---     })
---   end
--- }
