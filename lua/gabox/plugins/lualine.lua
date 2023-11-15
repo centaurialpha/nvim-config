@@ -119,6 +119,7 @@ return {
       end,
       padding = { right = 1 },
     })
+    ins_right({"location"})
     ins_right({
       "filetype",
       fmt = string.upper,
