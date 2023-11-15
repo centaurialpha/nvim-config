@@ -17,7 +17,7 @@ return {
         return {
           CursorLine = { bg = "#242430" },
         }
-      end
+      end,
     })
     vim.cmd("colorscheme kanagawa-wave")
   end,
