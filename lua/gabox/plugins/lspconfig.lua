@@ -9,8 +9,14 @@ return {
       virtual_text = false,
     })
     local lspconfig = require("lspconfig")
+    local navic = require("nvim-navic")
 
-    local on_attach = function(_, bufnr)
+    local on_attach = function(client, bufnr)
+
+      if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+      end
+
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
       vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { buffer = bufnr })
@@ -29,10 +35,11 @@ return {
       on_attach = on_attach,
     })
 
-    -- lspconfig.ruff_lsp.setup({
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    -- })
+    lspconfig.ruff_lsp.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
