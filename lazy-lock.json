@@ -27,8 +27,10 @@
   "nvim-tree.lua": { "branch": "master", "commit": "80cfeadf179d5cba76f0f502c71dbcff1b515cd8" },
   "nvim-treesitter": { "branch": "master", "commit": "8b9f99660294dcd11d42572c84ee33a1e284f70d" },
   "nvim-treesitter-context": { "branch": "master", "commit": "c03f8aab1e6649036d69ba7e3af4d09cb7e4d977" },
+  "nvim-ufo": { "branch": "main", "commit": "a6132d058f23d15686f07b8e1ca252e060a0e0ce" },
   "nvim-web-devicons": { "branch": "master", "commit": "11eb26fc166742db8d1e8a6f5a7de9df37b09aae" },
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
+  "promise-async": { "branch": "main", "commit": "e94f35161b8c5d4a4ca3b6ff93dd073eb9214c0e" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
   "telescope.nvim": { "branch": "0.1.x", "commit": "7011eaae0ac1afe036e30c95cf80200b8dc3f21a" },
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" }

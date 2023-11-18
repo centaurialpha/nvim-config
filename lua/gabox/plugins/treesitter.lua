@@ -3,6 +3,9 @@ return {
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup({
+      provider_selector = function(_, _, _)
+        return { "treesitter", "indent" }
+      end,
       highlight = {
         enable = true,
       },
