@@ -21,6 +21,7 @@ return {
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
       vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { buffer = bufnr })
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
+      vim.keymap.set("n", "gr", vim.lsp.buf.rename, { buffer = bufnr })
       vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, { buffer = bufnr })
     end
 

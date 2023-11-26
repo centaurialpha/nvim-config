@@ -1,3 +1,41 @@
+local icons = {
+  Array = " ",
+  Boolean = " ",
+  Class = " ",
+  Codeium = " ",
+  Color = " ",
+  Constant = " ",
+  Constructor = " ",
+  Copilot = " ",
+  Enum = " ",
+  EnumMember = " ",
+  Event = " ",
+  Field = " ",
+  File = " ",
+  Folder = " ",
+  Function = " ",
+  Interface = " ",
+  Key = " ",
+  Keyword = " ",
+  Method = " ",
+  Module = " ",
+  Namespace = " ",
+  Null = " ",
+  Number = " ",
+  Object = " ",
+  Operator = " ",
+  Package = " ",
+  Property = " ",
+  Reference = " ",
+  Snippet = " ",
+  String = " ",
+  Struct = " ",
+  Text = " ",
+  TypeParameter = " ",
+  Unit = " ",
+  Value = " ",
+  Variable = " ",
+}
 return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
@@ -26,45 +64,32 @@ return {
     local select_opts = { behavior = cmp.SelectBehavior.Select }
 
     cmp.setup({
-      ---completion = {
-      ---  autocomplete = true,
-      ---},
+      completion = {
+        completeopt = "menu,menuone,noinsert",
+        -- autocomplete = true,
+      },
+      window = {
+        documentation = false,
+      },
+
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
       formatting = {
-        fields = { "menu", "abbr", "kind" },
-        format = lspkind.cmp_format({
-          mode = "symbol",
-          max_width = 50,
-          symbol_map = { Copilot = "", nvim_lsp = "AAAA" },
-        }),
-        -- format = function(entry, item)
-        --   local menu_icon = {
-        --     nvim_lsp = "λ",
-        --     luasnip = "⋗",
-        --     buffer = "Ω",
-        --     path = "🖫",
-        --   }
-
-        --   item.menu = menu_icon[entry.source.name]
-        --   return item
-        -- end,
-      },
-      window = {
-        documentation = cmp.config.window.bordered(),
+        format = function(_, item)
+          if icons[item.kind] then
+            item.kind = icons[item.kind] .. item.kind
+          end
+          return item
+        end,
       },
       sources = {
         { name = "copilot", group_index = 2 },
         { name = "nvim_lsp", group_index = 2 },
         { name = "path", group_index = 2 },
         { name = "luasnip", group_index = 2 },
-        -- { name = "path" },
-        -- { name = "nvim_lsp", keyword_length = 1 },
-        -- { name = "buffer", keyword_length = 3 },
-        -- { name = "luasnip", keyword_length = 2 },
       },
       mapping = {
         ["<Up>"] = cmp.mapping.select_prev_item(select_opts),
