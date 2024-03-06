@@ -8,56 +8,65 @@ return {
     vim.diagnostic.config({
       virtual_text = false,
     })
-    local lspconfig = require("lspconfig")
-    local navic = require("nvim-navic")
 
-    local on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+      callback = function(event)
+        local map = function(keys, func, desc)
+          vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+        end
 
-      if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-      end
-
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
-      vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, { buffer = bufnr })
-      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
-      vim.keymap.set("n", "gr", vim.lsp.buf.rename, { buffer = bufnr })
-      vim.keymap.set("n", "<leader>df", vim.diagnostic.goto_next, { buffer = bufnr })
-    end
+        local telescope_builtin = require("telescope.builtin")
+        map("gd", telescope_builtin.lsp_definitions, "[G]oto [D]efinition")
+        map("K", vim.lsp.buf.hover, "Hover Documentation")
+        map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+      end,
+    })
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-    require("mason").setup()
-    require("mason-lspconfig").setup()
+    -- FIXME: Mejorar ésto
+    local navic = require("nvim-navic")
+    local on_attach_navic = function(client, bufnr)
+      navic.attach(client, bufnr)
+    end
 
-    lspconfig.pyright.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig.ruff_lsp.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-    })
-
-    lspconfig.lua_ls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
+    local servers = {
+      rust_analyzer = {
+        on_attach = on_attach_navic,
+      },
+      pyright = {
+        on_attach = on_attach_navic,
+      },
+      ruff_lsp = {},
+      lua_ls = {
+        on_attach = on_attach_navic,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
             },
+            workspace = {
+              checkThirdParty = false,
+              library = {
+                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                [vim.fn.stdpath("config") .. "/lua"] = true,
+              },
+            },
+            telemetry = { enable = false },
           },
-          telemetry = { enable = false },
         },
+      },
+    }
+    require("mason").setup()
+    require("mason-lspconfig").setup({
+      handlers = {
+        function(server_name)
+          local server = servers[server_name] or {}
+          server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+          require("lspconfig")[server_name].setup(server)
+        end,
       },
     })
   end,

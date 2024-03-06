@@ -66,7 +66,7 @@ return {
     cmp.setup({
       completion = {
         completeopt = "menu,menuone,noinsert",
-        -- autocomplete = true,
+        -- autocomplete = false,
       },
       window = {
         documentation = false,

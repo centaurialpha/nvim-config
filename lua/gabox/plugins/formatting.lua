@@ -9,7 +9,8 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "black", "usort", "ruff" },
-        -- ["*"] = { "trim_whitespace" },
+        json = { "prettier" },
+        rust = { "rustfmt" },
       },
     })
 
