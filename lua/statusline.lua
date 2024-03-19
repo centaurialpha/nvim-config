@@ -1,27 +1,12 @@
 -- Statusline
 -- MIT License Copyright (c) 2024 Gabriel Acosta
 
-local Statusline = {}
-local H = {}
+Statusline = {}
 
 -- Show the mode in my custom component instead.
 vim.o.showmode = false
 -- Global status line
 vim.o.laststatus = 3
-
-local colors = {
-  -- bg = "#201F30",
-  -- fg = "#bbc2cf",
-  yellow = "#ECBE7B",
-  cyan = "#008080",
-  darkblue = "#081633",
-  green = "#98be65",
-  orange = "#FF8800",
-  violet = "#a9a1e1",
-  magenta = "#c678dd",
-  blue = "#51afef",
-  red = "#ec5f67",
-}
 
 local modes = {
   ["n"] = "NO",
@@ -61,29 +46,9 @@ local modes = {
   ["t"] = "TE",
 }
 
-local colors_mode = {
-  ["NO"] = colors.red,
-  ["IN"] = colors.green,
-  ["IC"] = colors.green,
-  ["VI"] = colors.orange,
-}
-
-Statusline.setup = function(config)
-  _G.Statusline = Statusline
-
-  H.apply_config(config)
-  H.setup_hl()
-end
-
 Statusline.mode = function()
-  local current_mode = vim.fn.mode()
-  return string.format(" [%%#Statusline_BlockMode#%s%%*] ", modes[current_mode])
-end
-
-Statusline.blocks = function()
-  local color = colors_mode[modes[vim.fn.mode()]]
-  vim.api.nvim_set_hl(0, "Statusline_BlockMode", { fg = color })
-  return "%#Statusline_BlockMode#█%*"
+  local current_mode = modes[vim.fn.mode()]
+  return string.format("[%s] ", current_mode)
 end
 
 Statusline.filename = function()
@@ -94,31 +59,78 @@ Statusline.filename = function()
   return fname .. " %m%r "
 end
 
-Statusline.file_info = function()
-  local filetype = vim.bo.filetype:upper()
-  local encoding = vim.bo.fileencoding or vim.bo.encoding
-  local format = vim.bo.fileformat
-  return string.format(" %s %s[%s] ", filetype, encoding, format)
+Statusline.lsp = function()
+  local count = {}
+  local levels = {
+    errors = "Error",
+    warnings = "Warn",
+    info = "Info",
+    hints = "Hint",
+  }
+
+  for k, level in pairs(levels) do
+    count[k] = vim.tbl_count(vim.diagnostic.get(0, { severity = level }))
+  end
+
+  local errors = ""
+  local warnings = ""
+  local info = ""
+  local hints = ""
+
+  if count["errors"] ~= 0 then
+    errors = " E:" .. count["errors"]
+  end
+  if count["warnings"] ~= 0 then
+    warnings = " W:" .. count["warnings"]
+  end
+  if count["info"] ~= 0 then
+    info = " I:" .. count["info"]
+  end
+  if count["hints"] ~= 0 then
+    hints = " H:" .. count["hints"]
+  end
+
+  return errors .. warnings .. hints .. info .. " "
+end
+
+Statusline.git = function()
+  local head = vim.b.gitsigns_head or "-"
+  local signs = vim.b.gitsigns_status or ""
+  return string.format("  %s %s ", head, signs)
 end
 
 Statusline.location = function()
-  return ' %l|%L│%2v|%-2{virtcol("$") - 1} '
+  return "[%l:%v/%L]"
+end
+
+local get_size = function()
+  local size = vim.fn.getfsize(vim.fn.getreg("%"))
+  if size < 1024 then
+    return string.format("%dB", size)
+  elseif size < 1048576 then
+    return string.format("%.2fKib", size / 1024)
+  else
+    return string.format("%.2fMiB", size / 1048576)
+  end
+end
+
+Statusline.filetype = function()
+  local filetype = vim.bo.filetype:upper()
+  local size = get_size()
+  return string.format("%s (%s) ", filetype, size)
 end
 
 Statusline.render = function()
   return table.concat({
-    Statusline.blocks(),
     Statusline.mode(),
     Statusline.filename(),
-    "%=%#StatusLineExtra#",
-    Statusline.file_info(),
+    Statusline.lsp(),
+    Statusline.git(),
+    " ",
+    "%=",
+    Statusline.filetype(),
     Statusline.location(),
-    Statusline.blocks(),
   })
 end
-
-H.apply_config = function(config) end
-
-H.setup_hl = function() end
 vim.go.statusline = "%!v:lua.Statusline.render()"
 return Statusline

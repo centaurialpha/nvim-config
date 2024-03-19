@@ -19,6 +19,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require("statusline")
+
 require("lazy").setup({
   -- tabstop and shiftwidh automático
   "tpope/vim-sleuth",

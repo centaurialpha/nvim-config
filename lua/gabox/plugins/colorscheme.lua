@@ -1,24 +1,14 @@
 return {
-  "rebelot/kanagawa.nvim",
+  "projekt0n/github-nvim-theme",
   lazy = false,
   priority = 1000,
   config = function()
-    require("kanagawa").setup({
-      colors = {
-        theme = {
-          all = {
-            ui = {
-              bg_gutter = "none",
-            },
-          },
-        },
+    local groups = {
+      all = {
+        StatusLine = { bg = "bg0" },
       },
-      overrides = function(colors)
-        return {
-          CursorLine = { bg = "#242430" },
-        }
-      end,
-    })
-    vim.cmd("colorscheme kanagawa-wave")
+    }
+    require("github-theme").setup({ groups = groups })
+    vim.cmd("colorscheme github_dark_colorblind")
   end,
 }
