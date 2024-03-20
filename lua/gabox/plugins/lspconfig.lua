@@ -61,6 +61,14 @@ return {
     }
     require("mason").setup()
     require("mason-lspconfig").setup({
+      ensure_installed = {
+        "lua_ls",
+        "rust_analyzer",
+        "pyright",
+        "ruff_lsp",
+        "dockerls",
+        "docker_compose_language_service"
+      },
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}

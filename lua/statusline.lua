@@ -56,7 +56,7 @@ Statusline.filename = function()
   if fname == "" then
     return ""
   end
-  return fname .. " %m%r "
+  return "%#StatuslineFileName#" .. fname .. "%*" .. " %m%r "
 end
 
 Statusline.lsp = function()
@@ -121,26 +121,26 @@ Statusline.filetype = function()
 end
 
 local color_modes = {
-  ["n"] = "#87afff", -- Azul para NORMAL
+  ["n"] = "#87afff",  -- Azul para NORMAL
   ["no"] = "#d0d0ff", -- Azul claro para NORMAL OPERANDO
-  ["v"] = "#ffafd7", -- Rosa claro para VISUAL
-  ["V"] = "#ff87af", -- Rosa fuerte para VISUAL LINE
-  [""] = "#ff8787", -- Rojo claro para VISUAL BLOCK
-  ["s"] = "#87ffaf", -- Verde claro para SELECT
-  ["S"] = "#d7ff87", -- Verde lima para SELECT LINE
-  [""] = "#ffaf87", -- Naranja claro para SELECT BLOCK
-  ["i"] = "#d7ff87", -- Verde lima para INSERT
+  ["v"] = "#ffafd7",  -- Rosa claro para VISUAL
+  ["V"] = "#ff87af",  -- Rosa fuerte para VISUAL LINE
+  [""] = "#ff8787",  -- Rojo claro para VISUAL BLOCK
+  ["s"] = "#87ffaf",  -- Verde claro para SELECT
+  ["S"] = "#d7ff87",  -- Verde lima para SELECT LINE
+  [""] = "#ffaf87",  -- Naranja claro para SELECT BLOCK
+  ["i"] = "#d7ff87",  -- Verde lima para INSERT
   ["ic"] = "#d7ff87", -- Verde lima para INSERT COMPLETION
-  ["R"] = "#ffaf87", -- Naranja claro para REPLACE
+  ["R"] = "#ffaf87",  -- Naranja claro para REPLACE
   ["Rv"] = "#ff87af", -- Rosa fuerte para VISUAL REPLACE
-  ["c"] = "#87afff", -- Azul para COMMAND LINE
+  ["c"] = "#87afff",  -- Azul para COMMAND LINE
   ["cv"] = "#ffafd7", -- Rosa claro para VIM EX
   ["ce"] = "#d0d0ff", -- Azul claro para EX
-  ["r"] = "#ffafd7", -- Rosa claro para PROMPT
+  ["r"] = "#ffafd7",  -- Rosa claro para PROMPT
   ["rm"] = "#87ffaf", -- Verde claro para MOAR
   ["r?"] = "#d7ff87", -- Verde lima para CONFIRM
-  ["!"] = "#ff8787", -- Rojo claro para SHELL
-  ["t"] = "#ff87af", -- Rosa fuerte para TERMINAL
+  ["!"] = "#ff8787",  -- Rojo claro para SHELL
+  ["t"] = "#ff87af",  -- Rosa fuerte para TERMINAL
 }
 
 local get_color_mode = function()
@@ -153,12 +153,13 @@ Statusline.render = function()
   -- Apply hl
   local hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
   vim.api.nvim_set_hl(0, "StatuslineFileType", { bold = true, italic = true, bg = hl.background })
+  vim.api.nvim_set_hl(0, "StatuslineFileName", { link = "StatuslineFileType" })
   vim.api.nvim_set_hl(0, "StatuslineMode", { bold = true, fg = get_color_mode(), bg = hl.background })
 
-  vim.api.nvim_set_hl(0, "StatuslineLSPWarn", { fg = "#ffb86c" })
-  vim.api.nvim_set_hl(0, "StatuslineLSPError", { fg = "#ff5555" })
-  vim.api.nvim_set_hl(0, "StatuslineLSPInfo", { fg = "#bd93f9" })
-  vim.api.nvim_set_hl(0, "StatuslineLSPHint", { fg = "#8be9fd" })
+  vim.api.nvim_set_hl(0, "StatuslineLSPWarn", { fg = "#ffb86c", bg = hl.background })
+  vim.api.nvim_set_hl(0, "StatuslineLSPError", { fg = "#ff5555", bg = hl.background })
+  vim.api.nvim_set_hl(0, "StatuslineLSPInfo", { fg = "#bd93f9", bg = hl.background })
+  vim.api.nvim_set_hl(0, "StatuslineLSPHint", { fg = "#8be9fd", bg = hl.background })
 
   return table.concat({
     Statusline.mode(),
