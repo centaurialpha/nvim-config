@@ -120,27 +120,38 @@ Statusline.filetype = function()
   return string.format("%s (%s) ", filetype, size)
 end
 
+local colors = {
+  blue = "#6495ED",
+  light_blue = "#00FFFF",
+  light_pink = "#FF69B4",
+  strong_pink = "#FF1493",
+  light_red = "#FF0000",
+  light_green = "#00FF00",
+  lime_green = "#32CD32",
+  orange = "#FFA500",
+}
+
 local color_modes = {
-  ["n"] = "#87afff",  -- Azul para NORMAL
-  ["no"] = "#d0d0ff", -- Azul claro para NORMAL OPERANDO
-  ["v"] = "#ffafd7",  -- Rosa claro para VISUAL
-  ["V"] = "#ff87af",  -- Rosa fuerte para VISUAL LINE
-  [""] = "#ff8787",  -- Rojo claro para VISUAL BLOCK
-  ["s"] = "#87ffaf",  -- Verde claro para SELECT
-  ["S"] = "#d7ff87",  -- Verde lima para SELECT LINE
-  [""] = "#ffaf87",  -- Naranja claro para SELECT BLOCK
-  ["i"] = "#d7ff87",  -- Verde lima para INSERT
-  ["ic"] = "#d7ff87", -- Verde lima para INSERT COMPLETION
-  ["R"] = "#ffaf87",  -- Naranja claro para REPLACE
-  ["Rv"] = "#ff87af", -- Rosa fuerte para VISUAL REPLACE
-  ["c"] = "#87afff",  -- Azul para COMMAND LINE
-  ["cv"] = "#ffafd7", -- Rosa claro para VIM EX
-  ["ce"] = "#d0d0ff", -- Azul claro para EX
-  ["r"] = "#ffafd7",  -- Rosa claro para PROMPT
-  ["rm"] = "#87ffaf", -- Verde claro para MOAR
-  ["r?"] = "#d7ff87", -- Verde lima para CONFIRM
-  ["!"] = "#ff8787",  -- Rojo claro para SHELL
-  ["t"] = "#ff87af",  -- Rosa fuerte para TERMINAL
+  ["n"] = colors.blue,
+  ["no"] = colors.light_blue,
+  ["v"] = colors.light_pink,
+  ["V"] = colors.strong_pink,
+  [""] = colors.light_red,
+  ["s"] = colors.light_green,
+  ["S"] = colors.lime_green,
+  [""] = colors.orange,
+  ["i"] = colors.lime_green,
+  ["ic"] = colors.lime_green,
+  ["R"] = colors.orange,
+  ["Rv"] = colors.strong_pink,
+  ["c"] = colors.blue,
+  ["cv"] = colors.light_pink,
+  ["ce"] = colors.light_blue,
+  ["r"] = colors.light_pink,
+  ["rm"] = colors.light_green,
+  ["r?"] = colors.lime_green,
+  ["!"] = colors.light_red,
+  ["t"] = colors.strong_pink,
 }
 
 local get_color_mode = function()
