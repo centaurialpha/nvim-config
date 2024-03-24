@@ -8,7 +8,14 @@ return {
         StatusLine = { bg = "bg0" },
       },
     }
-    require("github-theme").setup({ groups = groups })
+    local specs = {
+      all = {
+        syntax = {
+          type = "magenta",
+        }
+      }
+    }
+    require("github-theme").setup({ groups = groups, specs = specs })
     vim.cmd("colorscheme github_dark_colorblind")
   end,
 }
