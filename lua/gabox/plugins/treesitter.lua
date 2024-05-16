@@ -12,8 +12,13 @@ return {
       indent = {
         enable = true,
       },
+      auto_install = true,
       ensure_installed = {
         "lua",
+        "astro",
+        "tsx",
+        "typescript",
+        "html",
         "python",
         "c",
         "cpp",

@@ -11,6 +11,7 @@ return {
         python = { "black", "usort", "ruff" },
         json = { "prettier" },
         rust = { "rustfmt" },
+        astro = {"prettier"},
       },
     })
 

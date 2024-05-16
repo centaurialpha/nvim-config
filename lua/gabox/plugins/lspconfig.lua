@@ -33,6 +33,7 @@ return {
     end
 
     local servers = {
+      astro = {},
       rust_analyzer = {
         on_attach = on_attach_navic,
       },
