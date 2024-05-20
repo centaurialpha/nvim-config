@@ -6,6 +6,7 @@ return {
     local groups = {
       all = {
         StatusLine = { bg = "bg0" },
+        Whitespace = { fg = "#dddddd" }
       },
     }
     local specs = {
