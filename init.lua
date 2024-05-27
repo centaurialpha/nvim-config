@@ -18,6 +18,7 @@ require("statusline")
 require("lazy").setup({
   -- tabstop and shiftwidh automático
   "tpope/vim-sleuth",
+
   "nvim-tree/nvim-web-devicons",
 
   { import = "gabox.plugins" },
