@@ -11,6 +11,8 @@ local opt = vim.opt
 opt.number = true
 opt.relativenumber = true
 
+opt.cmdheight = 0
+
 opt.expandtab = true
 opt.autoindent = true
 opt.breakindent = true
