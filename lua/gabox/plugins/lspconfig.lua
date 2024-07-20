@@ -33,6 +33,9 @@ return {
     end
 
     local servers = {
+      clangd = {
+        on_attach = on_attach_navic,
+      },
       astro = {},
       rust_analyzer = {
         on_attach = on_attach_navic,
@@ -40,7 +43,9 @@ return {
       pyright = {
         on_attach = on_attach_navic,
       },
+      gopls = {},
       ruff_lsp = {},
+      make = {},
       lua_ls = {
         on_attach = on_attach_navic,
         settings = {

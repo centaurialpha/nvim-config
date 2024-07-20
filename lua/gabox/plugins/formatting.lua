@@ -12,7 +12,11 @@ return {
         json = { "prettier" },
         rust = { "rustfmt" },
         astro = { "prettier" },
-        c = { "clang-format" }
+        javascriptreact = { "prettier" },
+        javascript = { "prettier" },
+        c = { "clang-format", "ast-grep" },
+        cpp = { "clang-format" },
+        go = { "gofmt" }
       },
     })
 
