@@ -131,17 +131,17 @@ Statusline.git = function()
 end
 
 Statusline.location = function()
-  return "[%l:%v/%L]"
+  return "%#StatuslineLocation#" .. "[%l:%v/%L]" .. "%*"
 end
 
 local get_size = function()
   local size = vim.fn.getfsize(vim.fn.getreg("%"))
   if size < 1024 then
-    return string.format("%dB", size)
+    return "%#StatuslineLocation#" .. string.format("%dB", size) .. "%*"
   elseif size < 1048576 then
-    return string.format("%.2fKib", size / 1024)
+    return "%#StatuslineLocation#" .. string.format("%.2fKib", size / 1024) .. "%*"
   else
-    return string.format("%.2fMiB", size / 1048576)
+    return "%#StatuslineLocation#" .. string.format("%.2fMiB", size / 1048576)
   end
 end
 
@@ -196,6 +196,7 @@ Statusline.render = function()
   local hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
   vim.api.nvim_set_hl(0, "StatuslineFileType", { bold = true, italic = true, bg = hl.background })
   vim.api.nvim_set_hl(0, "StatuslineFileName", { link = "StatuslineFileType" })
+  vim.api.nvim_set_hl(0, "StatuslineLocation", { link = "StatuslineFileType" })
   vim.api.nvim_set_hl(0, "StatuslineMode", { bold = true, fg = get_color_mode(), bg = hl.background })
 
   vim.api.nvim_set_hl(0, "StatuslineLSPWarn", { fg = "#ffb86c", bg = hl.background })

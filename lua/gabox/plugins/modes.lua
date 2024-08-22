@@ -2,10 +2,7 @@ return {
   "mvllow/modes.nvim",
   config = function()
     require("modes").setup({
-      colors = {
-        delete = "#E82424",
-        insert = "#FF9E3B",
-      }
+      line_opacity = 0.1
     })
   end
 }

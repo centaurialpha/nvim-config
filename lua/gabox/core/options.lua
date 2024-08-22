@@ -1,21 +1,30 @@
+-- NOTE: Must happen before plugin are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.g.have_nerd_font = true
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
-vim.g.have_nerd_font = true
 
 local opt = vim.opt
 
 opt.number = true
 opt.relativenumber = true
 
+-- Don't show mode, since it's already in the status line
+opt.showmode = false
+
 opt.cmdheight = 0
 
+-- Sync clipboard between OS and neovim
+vim.schedule(function()
+  opt.clipboard = "unnamedplus"
+end)
+
+opt.breakindent = true
 opt.expandtab = true
 opt.autoindent = true
-opt.breakindent = true
 
 opt.ignorecase = true
 opt.smartcase = true
@@ -28,8 +37,6 @@ opt.signcolumn = "yes"
 
 opt.backspace = "indent,eol,start"
 
-opt.clipboard = "unnamedplus"
-
 opt.undofile = true
 
 opt.splitright = true
@@ -40,6 +47,9 @@ opt.updatetime = 250
 opt.swapfile = false
 
 opt.completeopt = { "menu", "menuone", "noselect" }
+
+-- Minimal number of screen lines to keep above and below the cursor
+opt.scrolloff = 10
 
 opt.foldlevel = 99
 opt.foldlevelstart = -1
