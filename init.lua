@@ -18,7 +18,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- My custom status line
-require("statusline")
+-- require("statusline")
 
 -- Plugins
 require("lazy").setup({

@@ -72,7 +72,7 @@ return {
         on_attach = on_attach_navic,
       },
       gopls = {},
-      ruff_lsp = {},
+      ruff = {},
       make = {},
       lua_ls = {
         on_attach = on_attach_navic,
@@ -99,7 +99,7 @@ return {
         "lua_ls",
         "rust_analyzer",
         "pyright",
-        "ruff_lsp",
+        "ruff",
         "dockerls",
         "docker_compose_language_service"
       },
