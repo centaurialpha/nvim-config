@@ -27,7 +27,7 @@ require("lazy").setup({
 
   "nvim-tree/nvim-web-devicons",
 
-  { import = "gabox.plugins" },
+{ import = "gabox.plugins" },
 }, {
   checker = {
     enabled = true,
