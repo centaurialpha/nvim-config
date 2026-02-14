@@ -11,6 +11,29 @@ return {
       }
     }
     require('bamboo').load()
+    -- Treesitter context fix
+    local bg = "#1a1a1a"
+
+    vim.api.nvim_set_hl(0, "TreesitterContext", {
+      bg = bg,
+      underline = false,
+    })
+
+     vim.api.nvim_set_hl(0, "TreesitterContextBottom", {
+       underline = true,
+     })
+
+    -- vim.api.nvim_set_hl(0, "TreesitterContextLineNumber", {
+    --   bg = bg,
+    --   fg = "#6f8f7f",
+    --   underline = false,
+    -- })
+
+    -- vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", {
+    --   bg = bg,
+    --   fg = "#6f8f7f",
+    --   underline = false,
+    -- })
   end,
   -- 'projekt0n/github-nvim-theme',
   -- name = 'github-theme',

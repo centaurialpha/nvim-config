@@ -8,6 +8,16 @@ return {
   },
   ---@type snacks.Config
   opts = {
+    dashboard = {
+      enabled = true,
+      preset = {
+        keys = {},
+        footer = function() return {} end,
+        header = [[
+qué onda
+        ]]
+      },
+    },
     indent = { enabled = false },
     zen = {},
     scroll = {},
