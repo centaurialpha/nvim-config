@@ -1,4 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter-context",
-  config = false,
+  config = function()
+    require("treesitter-context").setup{}
+  end,
 }

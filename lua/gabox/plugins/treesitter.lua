@@ -2,17 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   config = function()
-    require("nvim-treesitter.config").setup({
-      provider_selector = function(_, _, _)
-        return { "treesitter", "indent" }
-      end,
-      highlight = {
-        enable = true,
-      },
-      indent = {
-        enable = true,
-      },
-      auto_install = true,
+    require("nvim-treesitter").setup({
       ensure_installed = {
         "lua",
         "astro",
@@ -30,6 +20,13 @@ return {
         "rust",
         "toml",
       },
+      highlight = {
+        enable = true,
+      },
+      indent = {
+        enable = true,
+      },
+      auto_install = true,
     })
   end,
 }

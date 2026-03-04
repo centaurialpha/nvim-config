@@ -17,6 +17,11 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client.server_capabilities.documentSymbolProvider then
+          require("nvim-navic").attach(client, event.buf)
+        end
+
         local map = function(keys, func, desc)
           vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
         end
@@ -39,27 +44,27 @@ return {
     local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     -- FIXME: Mejorar ésto
-    local navic = require("nvim-navic")
-    local on_attach_navic = function(client, bufnr)
-      navic.attach(client, bufnr)
-    end
+    -- local navic = require("nvim-navic")
+    -- local on_attach_navic = function(client, bufnr)
+    --   navic.attach(client, bufnr)
+    -- end
 
     local servers = {
       clangd = {
-        on_attach = on_attach_navic,
+        -- on_attach = on_attach_navic,
       },
       astro = {},
       rust_analyzer = {
-        on_attach = on_attach_navic,
+        -- on_attach = on_attach_navic,
       },
       pyright = {
-        on_attach = on_attach_navic,
+        -- on_attach = on_attach_navic,
       },
       gopls = {},
       ruff = {},
       make = {},
       lua_ls = {
-        on_attach = on_attach_navic,
+        -- on_attach = on_attach_navic,
         settings = {
           Lua = {
             diagnostics = {
