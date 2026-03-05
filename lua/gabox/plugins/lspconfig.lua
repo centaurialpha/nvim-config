@@ -58,7 +58,7 @@ return {
         -- on_attach = on_attach_navic,
       },
       pyright = {
-        -- on_attach = on_attach_navic,
+      --   -- on_attach = on_attach_navic,
       },
       gopls = {},
       ruff = {},
@@ -87,7 +87,7 @@ return {
       ensure_installed = {
         "lua_ls",
         "rust_analyzer",
-        "pyright",
+        --"pyright",
         "ruff",
         "dockerls",
         "docker_compose_language_service"
