@@ -1,16 +1,21 @@
 return {
-  "vague-theme/vague.nvim",
-  lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-  priority = 1000, -- make sure to load this before all the other plugins
+  "olimorris/onedarkpro.nvim",
+  priority = 1000, -- Ensure it loads first
   config = function()
-    -- NOTE: you do not need to call setup if you don't want to.
-    require("vague").setup({
-      colors = {
-        bg = "#111111"
-      }
-    })
-    vim.cmd("colorscheme vague")
-  end
+    vim.cmd("colorscheme onedark_dark")
+  end,
+  -- "vague-theme/vague.nvim",
+  -- lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+  -- priority = 1000, -- make sure to load this before all the other plugins
+  -- config = function()
+  --   -- NOTE: you do not need to call setup if you don't want to.
+  --   require("vague").setup({
+  --     colors = {
+  --       bg = "#111111"
+  --     }
+  --   })
+  --   vim.cmd("colorscheme vague")
+  -- end
 }
 -- return {
 --   'ribru17/bamboo.nvim',
