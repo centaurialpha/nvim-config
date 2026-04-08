@@ -1,24 +1,50 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    {
-      "williamboman/mason.nvim",
-      config = true
-    },
+    { "williamboman/mason.nvim", config = true },
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    "saghen/blink.cmp"
+    "saghen/blink.cmp",
   },
   config = function()
-    vim.diagnostic.config({
-      virtual_text = false,
+    vim.diagnostic.config({ virtual_text = false })
+
+    -- Capabilities globales para todos los servidores
+    vim.lsp.config("*", {
+      capabilities = require("blink.cmp").get_lsp_capabilities(),
     })
 
+    -- Configuraciones específicas por servidor
+    vim.lsp.config("lua_ls", {
+      settings = {
+        Lua = {
+          diagnostics = { globals = { "vim" } },
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+              [vim.fn.stdpath("config") .. "/lua"] = true,
+            },
+          },
+          telemetry = { enable = false },
+        },
+      },
+    })
+
+    -- ty no está en lspconfig aún, lo definimos manualmente
+    vim.lsp.config("ty", {
+      cmd = { "ty", "server" },
+      filetypes = { "python" },
+      root_markers = { "pyproject.toml", "uv.lock", "setup.py", ".git" },
+    })
+    vim.lsp.enable("ty")
+
+    -- Keymaps en LspAttach
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client.server_capabilities.documentSymbolProvider then
+        if client and client.server_capabilities.documentSymbolProvider then
           require("nvim-navic").attach(client, event.buf)
         end
 
@@ -39,65 +65,24 @@ return {
       end,
     })
 
-    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-    local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-    -- FIXME: Mejorar ésto
-    -- local navic = require("nvim-navic")
-    -- local on_attach_navic = function(client, bufnr)
-    --   navic.attach(client, bufnr)
-    -- end
-
-    local servers = {
-      clangd = {
-        -- on_attach = on_attach_navic,
-      },
-      astro = {},
-      rust_analyzer = {
-        -- on_attach = on_attach_navic,
-      },
-      pyright = {
-      --   -- on_attach = on_attach_navic,
-      },
-      gopls = {},
-      ruff = {},
-      make = {},
-      lua_ls = {
-        -- on_attach = on_attach_navic,
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim" },
-            },
-            workspace = {
-              checkThirdParty = false,
-              library = {
-                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                [vim.fn.stdpath("config") .. "/lua"] = true,
-              },
-            },
-            telemetry = { enable = false },
-          },
-        },
-      },
-    }
     require("mason").setup()
+
+    -- mason-tool-installer instala ty (mason-lspconfig no lo reconoce aún)
+    require("mason-tool-installer").setup({
+      ensure_installed = { "ty", "stylua", "ruff" },
+    })
+
+    -- mason-lspconfig v2: sin handlers, automatic_enable se encarga solo
     require("mason-lspconfig").setup({
       ensure_installed = {
         "lua_ls",
         "rust_analyzer",
-        --"pyright",
         "ruff",
         "dockerls",
-        "docker_compose_language_service"
+        "docker_compose_language_service",
       },
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-          require("lspconfig")[server_name].setup(server)
-        end,
+      automatic_enable = {
+        exclude = { "ty" }, -- ty lo habilitamos manualmente arriba
       },
     })
   end,
