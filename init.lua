@@ -30,7 +30,7 @@ require("lazy").setup({
 { import = "gabox.plugins" },
 }, {
   checker = {
-    enabled = true,
+    enabled = false,
     notify = false,
   },
   change_detection = {
