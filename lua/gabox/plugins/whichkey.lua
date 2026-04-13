@@ -18,7 +18,9 @@ return {
       { "<leader>l", group = "LSP/Format" },
       { "<leader>n", group = "Notifications" },
       { "<leader>t", group = "Terminal" },
+      { "<leader>t", group = "Terminal/Translate" },
       { "<leader>x", group = "Trouble" },
+      { "<leader>ss", desc = "Spell suggest" },
     })
   end,
 }

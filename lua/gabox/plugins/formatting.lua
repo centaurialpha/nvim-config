@@ -14,9 +14,14 @@ return {
         astro = { "prettier" },
         javascriptreact = { "prettier" },
         javascript = { "prettier" },
-        c = { "clang-format", "ast-grep" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+        c = { "clang-format" },
         cpp = { "clang-format" },
-        go = { "gofmt" }
+        go = { "goimports", "gofmt" },
+        toml = { "taplo" },
+        sh = { "shfmt" },
+        bash = { "shfmt" },
       },
     })
 

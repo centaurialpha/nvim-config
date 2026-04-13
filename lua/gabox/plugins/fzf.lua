@@ -26,6 +26,6 @@ return {
     vim.keymap.set("n", "<leader>ge", fzf.git_stash)
 
     vim.keymap.set("n", "<leader>sr", fzf.registers)
-    vim.keymap.set("n", "<leader>s", fzf.spell_suggest)
+    vim.keymap.set("n", "<leader>ss", fzf.spell_suggest, { desc = "[S]pell [S]uggest"})
   end
 }

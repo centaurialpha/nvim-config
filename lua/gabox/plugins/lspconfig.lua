@@ -69,7 +69,7 @@ return {
 
     -- mason-tool-installer instala ty (mason-lspconfig no lo reconoce aún)
     require("mason-tool-installer").setup({
-      ensure_installed = { "ty", "stylua", "ruff" },
+      ensure_installed = { "ty", "stylua", "ruff", "taplo", "shfmt", "goimports", "shellcheck" },
     })
 
     -- mason-lspconfig v2: sin handlers, automatic_enable se encarga solo
@@ -80,6 +80,12 @@ return {
         "ruff",
         "dockerls",
         "docker_compose_language_service",
+        "gopls",
+        "clangd",
+        "ts_ls",
+        "bashls",
+        "yamlls",
+        "taplo",
       },
       automatic_enable = {
         exclude = { "ty" }, -- ty lo habilitamos manualmente arriba

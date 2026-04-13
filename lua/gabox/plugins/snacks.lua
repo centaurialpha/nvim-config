@@ -56,6 +56,6 @@ qué onda
       timeout = 3000,
     },
     input = { enabled = true },
-    picker = { enabled = true },
+    picker = { enabled = false },
   },
 }

@@ -157,11 +157,10 @@ ins_left({
 })
 
 ins_left({
-  -- Lsp server name .
   function()
     local clients = vim.lsp.get_clients({ bufnr = 0 })
     if #clients == 0 then
-      return "No Active LSP"
+      return ""
     end
     local names = {}
     for _, c in ipairs(clients) do
@@ -169,16 +168,16 @@ ins_left({
     end
     return table.concat(names, ", ")
   end,
-  icon = " LSP:",
+  icon = "LSP:",
   color = { fg = "#ffffff", gui = "bold" },
 })
 
 -- Add components to right sections
 ins_right({
-  "o:encoding", -- option component same as &encoding in viml
-  fmt = string.upper, -- I'm not sure why it's upper case either ;)
-  cond = conditions.hide_in_width,
-  color = { fg = colors.green, gui = "bold" },
+  "filetype",
+  icons_enabled = false,
+  colored = true,
+  --color = { fg = colors.green, gui = "bold" },
 })
 
 ins_right({
@@ -204,6 +203,30 @@ ins_right({
     removed = { fg = colors.red },
   },
   cond = conditions.hide_in_width,
+})
+
+ins_right({ "searchcount", color = { fg = colors.cyan } })
+
+ins_right({
+  function()
+    local reg = vim.fn.reg_recording()
+    if reg ~= "" then
+      return "  @" .. reg
+    end
+    return ""
+  end,
+  color = { fg = colors.orange, gui = "bold" },
+})
+
+ins_right({
+  function()
+    local venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_DEFAULT_ENV")
+    if venv then
+      return "  " .. vim.fn.fnamemodify(venv, ":t")
+    end
+    return ""
+  end,
+  color = { fg = colors.green },
 })
 
 ins_right({
