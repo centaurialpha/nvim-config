@@ -63,3 +63,7 @@ opt.foldcolumn = "0"
 --  and `:help 'listchars'`
 opt.list = true
 opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+opt.winborder = "rounded"
+
+opt.smoothscroll = true

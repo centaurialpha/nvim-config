@@ -68,7 +68,7 @@ return {
         map("gI", fzf.lsp_implementations, "[G]oto [I]mplementation")
         map("<leader>D", fzf.lsp_typedefs, "Type [D]efinition")
         map("<leader>ds", fzf.lsp_document_symbols, "[D]ocument [S]ymbols")
-        map("<leader>ws", fzf.lsp_workspace_symbols, "[W]orkspace [S]ymbols")
+        map("<leader>ws", fzf.lsp_live_workspace_symbols, "[W]orkspace [S]ymbols")
         map("<leader>ca", fzf.lsp_code_actions, "[C]ode [A]ctions")
         map("gD", fzf.lsp_declarations, "[G]oto [D]eclaration")
         map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")

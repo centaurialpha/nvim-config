@@ -46,10 +46,10 @@ qué onda
         ]],
       },
     },
-    indent = { enabled = false },
+    indent = { enabled = true },
     zen = {},
     scroll = {},
-    words = { enabled = true },
+    words = { enabled = false },
     terminal = {},
     notifier = {
       enabled = true,
