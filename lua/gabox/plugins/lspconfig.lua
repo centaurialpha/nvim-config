@@ -7,7 +7,17 @@ return {
     "saghen/blink.cmp",
   },
   config = function()
-    vim.diagnostic.config({ virtual_text = false })
+    vim.diagnostic.config({
+      virtual_text = false,
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+      float = {
+        border = "rounded",
+        source = true,
+      },
+    })
 
     -- Capabilities globales para todos los servidores
     vim.lsp.config("*", {

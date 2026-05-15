@@ -12,7 +12,7 @@ return {
         git_icons = false,
         file_icons = false,
         color_icons = false,
-      }
+      },
     })
     -- Buffers
     vim.keymap.set("n", "<leader>b", fzf.buffers)
@@ -26,6 +26,10 @@ return {
     vim.keymap.set("n", "<leader>ge", fzf.git_stash)
 
     vim.keymap.set("n", "<leader>sr", fzf.registers)
-    vim.keymap.set("n", "<leader>ss", fzf.spell_suggest, { desc = "[S]pell [S]uggest"})
-  end
+    vim.keymap.set("n", "<leader>ss", fzf.spell_suggest, { desc = "[S]pell [S]uggest" })
+
+    vim.keymap.set("n", "<leader>sk", fzf.keymaps, { desc = "[S]earch [K]eymaps" })
+    vim.keymap.set("n", "<leader>sh", fzf.help_tags, { desc = "[S]earch [H]elp" })
+    vim.keymap.set("n", "<leader>s:", fzf.command_history, { desc = "[S]earch command history" })
+  end,
 }
