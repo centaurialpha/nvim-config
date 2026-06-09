@@ -22,3 +22,16 @@ end, { desc = "[F]ind [f]iles" })
 vim.keymap.set("n", "<leader>sw", function()
     require("fzf-lua").live_grep()
 end, { desc = "[S]earch [w]ord" })
+
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     callback = function(args)
+--         local bufnr = args.buf
+--         local map = function(mode, lhs, rhs, desc)
+--             vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+--         end
+--         
+--         map("n", "<leader>k", vim.lsp.buf.hover, "LSP Hover")
+--     end,
+-- })
+
+vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, { desc = "LSP hover" })

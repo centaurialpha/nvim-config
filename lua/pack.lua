@@ -10,6 +10,11 @@ vim.pack.add {
     gh "nvim-mini/mini.nvim",
     gh "sschleemilch/slimline.nvim",
     { src = gh "nvim-treesitter/nvim-treesitter", version = "main" },
+    -- LSP
+    gh "mason-org/mason.nvim",
+    gh "neovim/nvim-lspconfig",
+    gh "mason-org/mason-lspconfig.nvim",
+    gh "WhoIsSethDaniel/mason-tool-installer.nvim",
 }
 
 require("guess-indent").setup {}
