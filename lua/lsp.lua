@@ -71,14 +71,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local buf = args.buf
     local map = function(m, lhs, rhs, desc) vim.keymap.set(m, lhs, rhs, { buffer = buf, desc = desc }) end
-    map('n', 'K', vim.lsp.buf.hover, 'LSP Hover')
     map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
-    map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
-    map('n', 'gi', vim.lsp.buf.implementation, 'Go to implementation')
-    map('n', 'gr', vim.lsp.buf.references, 'References')
-    map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename')
-    map('n', '<leader>ca', vim.lsp.buf.code_action, 'Code action')
-    map('n', 'gl', vim.diagnostic.open_float)
+    map('n', 'K', vim.lsp.buf.hover, 'LSP Hover')
+    map('n', 'gl', vim.diagnostic.open_float, 'Diagnostics float')
     map('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, 'Format')
   end,
 })

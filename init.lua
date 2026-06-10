@@ -1,21 +1,17 @@
-require("vim._core.ui2").enable({})
-
+require('vim._core.ui2').enable {}
 vim.loader.enable()
 
-require("options")
-require("statusline")
-require("pack")
-require("blink")
-require("lsp")
+require 'config.options'
+require 'config.keymaps'
+require 'pack'
+require 'blink'
+require 'lsp'
 
--- All plugins
-require("plugins.oil")
-require("plugins.treesitter")
-require("plugins.gitsigns")
-require("plugins.todo")
-require("plugins.mini")
--- require("plugins.slimline")
+require 'plugins.oil'
+require 'plugins.treesitter'
+require 'plugins.gitsigns'
+require 'plugins.todo'
+require 'plugins.mini'
+require 'plugins.fzf'
 
-require("keymaps")
-
-vim.cmd.colorscheme("moonfly")
+vim.cmd.colorscheme 'moonfly'
