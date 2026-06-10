@@ -1,0 +1,33 @@
+local cmp = require("blink.cmp")
+cmp.build():pwait()
+cmp.setup()
+-- require('blink.cmp').setup({
+--   keymap = {
+--     preset = 'default',
+--     ['<C-space>'] = { 'show', 'fallback' },
+--     ['<C-e>']     = { 'hide', 'fallback' },
+--     ['<CR>']      = { 'accept', 'fallback' },
+--     ['<Tab>']     = { 'select_next', 'fallback' },
+--     ['<S-Tab>']   = { 'select_prev', 'fallback' },
+--   },
+--   completion = {
+--     documentation = {
+--       auto_show = false,
+--       window    = { border = 'rounded' },
+--     },
+--     menu = {
+--       border     = 'rounded',
+--       max_height = 8,
+--       draw = {
+--         columns = {
+--           { 'label' },
+--           { 'kind_icon', 'kind', gap = 1 },
+--         },
+--       },
+--     },
+--   },
+--   signature = { enabled = false },   -- acá, fuera de completion
+--   sources = {
+--     default = { 'lsp', 'buffer', 'path' },
+--   },
+-- })

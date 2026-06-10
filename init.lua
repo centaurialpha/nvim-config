@@ -5,6 +5,7 @@ vim.loader.enable()
 require("options")
 require("statusline")
 require("pack")
+require("blink")
 require("lsp")
 
 -- All plugins
