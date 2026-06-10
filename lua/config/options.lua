@@ -23,7 +23,7 @@ vim.opt.laststatus = 3
 
 vim.opt.swapfile = false
 vim.opt.backup = false
- vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 -- Enable undo/redo changes even after closing and reopening a file
 vim.opt.undofile = true
 
@@ -40,9 +40,9 @@ vim.opt.termguicolors = true
 
 vim.opt.cursorline = true
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-    desc = "Highlight when yanking text",
-    callback = function()
-        vim.hl.on_yank()
-    end,
-})
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+vim.opt.confirm = true
+vim.opt.showmode = false
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }

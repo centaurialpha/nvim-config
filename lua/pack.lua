@@ -8,7 +8,6 @@ vim.pack.add {
   gh 'NMAC427/guess-indent.nvim',
   gh 'folke/todo-comments.nvim',
   gh 'nvim-mini/mini.nvim',
-  gh 'sschleemilch/slimline.nvim',
   { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' },
   -- LSP
   gh 'mason-org/mason.nvim',
@@ -18,6 +17,8 @@ vim.pack.add {
 
   gh 'saghen/blink.lib',
   gh 'saghen/blink.cmp',
+
+  gh 'folke/which-key.nvim',
 }
 
 require('guess-indent').setup {}
