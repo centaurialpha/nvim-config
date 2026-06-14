@@ -19,6 +19,8 @@ vim.pack.add {
   gh 'saghen/blink.cmp',
 
   gh 'folke/which-key.nvim',
+
+  gh 'SmiteshP/nvim-navic',
 }
 
 require('guess-indent').setup {}

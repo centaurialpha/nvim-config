@@ -18,6 +18,7 @@ require 'plugins.which-key'
 require 'blink'
 require 'lsp'
 
-require 'statusline'
-
 vim.cmd.colorscheme 'moonfly'
+
+require 'statusline'
+require 'plugins.navic'
