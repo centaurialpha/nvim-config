@@ -1,8 +1,6 @@
 local M = {}
 _G.Statusline = M
 
-vim.o.laststatus = 3
-
 local mode_labels = {
   n = 'NOR',
   i = 'INS',

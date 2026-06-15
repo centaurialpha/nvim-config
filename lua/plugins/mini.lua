@@ -6,4 +6,10 @@ require('mini.ai').setup {
   n_lines = 500,
 }
 
-require('mini.surround').setup {}
+require('mini.surround').setup()
+require('mini.pairs').setup()
+require('mini.comment').setup()
+
+require('mini.git').setup()
+
+require('mini.indentscope').setup()
