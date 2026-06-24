@@ -74,7 +74,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
     map('n', 'K', vim.lsp.buf.hover, 'LSP Hover')
     map('n', 'gl', vim.diagnostic.open_float, 'Diagnostics float')
-    map('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, 'Format')
+    map('n', '<leader>r', vim.lsp.buf.rename, 'Rename')
+    -- map('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, 'Format')
   end,
 })
 

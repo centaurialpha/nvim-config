@@ -14,6 +14,7 @@ require 'plugins.todo'
 require 'plugins.mini'
 require 'plugins.fzf'
 require 'plugins.which-key'
+require 'plugins.formatter'
 
 require 'blink'
 require 'lsp'

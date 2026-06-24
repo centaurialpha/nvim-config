@@ -21,6 +21,8 @@ vim.pack.add {
   gh 'folke/which-key.nvim',
 
   gh 'SmiteshP/nvim-navic',
+
+  gh 'stevearc/conform.nvim',
 }
 
 require('guess-indent').setup {}
