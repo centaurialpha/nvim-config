@@ -12,6 +12,13 @@ require('mason-tool-installer').setup {
     'stylua',
     'shfmt',
     'shellcheck',
+
+    'ts_ls',
+    'eslint',
+    'html',
+    'cssls',
+    'tailwindcss',
+    'prettierd',
   },
 }
 
