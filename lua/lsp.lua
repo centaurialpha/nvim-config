@@ -13,12 +13,16 @@ require('mason-tool-installer').setup {
     'shfmt',
     'shellcheck',
 
-    'ts_ls',
+    'vtsls',
     'eslint',
     'html',
     'cssls',
     'tailwindcss',
     'prettierd',
+
+    'jsonls',
+    'emmet_language_server',
+    'marksman',
   },
 }
 
@@ -77,6 +81,7 @@ vim.lsp.enable 'ty'
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local buf = args.buf
+    vim.lsp.inlay_hint.enable(true, { bufnr = buf })
     local map = function(m, lhs, rhs, desc) vim.keymap.set(m, lhs, rhs, { buffer = buf, desc = desc }) end
     map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
     map('n', 'K', vim.lsp.buf.hover, 'LSP Hover')
@@ -92,7 +97,7 @@ vim.diagnostic.config {
   update_in_insert = false,
   float = { border = 'rounded', source = 'if_many', wrap = true },
   underline = true,
-  virtual_text = false,
+  virtual_text = { spacing = 2, source = 'if_many' },
   virtual_lines = false,
   signs = {
     text = {

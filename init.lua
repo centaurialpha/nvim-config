@@ -16,7 +16,7 @@ require 'plugins.fzf'
 require 'plugins.which-key'
 require 'plugins.formatter'
 
-require 'blink'
+-- require 'blink'
 require 'lsp'
 
 vim.cmd.colorscheme 'moonfly'
