@@ -1,5 +1,5 @@
 require("oil").setup {
     view_options = {
-        show_hidden = true,
+        -- show_hidden = true,
     },
 }

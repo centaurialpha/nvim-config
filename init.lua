@@ -15,6 +15,8 @@ require 'plugins.mini'
 require 'plugins.fzf'
 require 'plugins.which-key'
 require 'plugins.formatter'
+require 'plugins.markdown'
+require 'plugins.claudecode'
 
 require 'blink'
 require 'lsp'
