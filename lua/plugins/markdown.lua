@@ -8,6 +8,8 @@ require('render-markdown').setup {
     cell = 'trimmed',
   },
   latex = { enabled = false },
+  -- En normal la línea del cursor queda renderizada; el texto crudo solo en insert.
+  anti_conceal = { disabled_modes = { 'n' } },
 }
 
 -- Con wrap activo las tablas anchas se cortan (limitación de Neovim con conceal).
