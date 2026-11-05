@@ -44,11 +44,6 @@
       "rev": "dc8a9918c3b1bc18a5fcd04d39b6d658074c0886",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
-    "modes.nvim": {
-      "rev": "2cd194d1033ba391d87d386735e15963adbc5f51",
-      "src": "https://github.com/mvllow/modes.nvim",
-      "version": "'v0.2.1'"
-    },
     "nvim-lspconfig": {
       "rev": "292f44408498103c47996ff5c18fd366293840d8",
       "src": "https://github.com/neovim/nvim-lspconfig"
@@ -62,10 +57,6 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
-    "oil-git.nvim": {
-      "rev": "bc25e507061f3e1b4e05f0fcda8c0ac81811d8bc",
-      "src": "https://github.com/malewicz1337/oil-git.nvim"
-    },
     "oil.nvim": {
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
       "src": "https://github.com/stevearc/oil.nvim"
@@ -73,10 +64,6 @@
     "render-markdown.nvim": {
       "rev": "f422cb5c6855f150e2ddcfaf44e7157b98b34f6a",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
-    },
-    "slimline.nvim": {
-      "rev": "6e1387e69e222957ff87e5ddc61470d4e04ac683",
-      "src": "https://github.com/sschleemilch/slimline.nvim"
     },
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",

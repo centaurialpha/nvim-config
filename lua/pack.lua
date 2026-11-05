@@ -3,7 +3,6 @@ local function gh(repo) return 'https://github.com/' .. repo end
 vim.pack.add {
   gh 'bluz71/vim-moonfly-colors',
   gh 'stevearc/oil.nvim',
-  gh 'malewicz1337/oil-git.nvim',
   gh 'lewis6991/gitsigns.nvim',
   gh 'ibhagwan/fzf-lua',
   gh 'NMAC427/guess-indent.nvim',
@@ -31,3 +30,6 @@ vim.pack.add {
 }
 
 require('guess-indent').setup {}
+
+require('mini.icons').setup()
+MiniIcons.mock_nvim_web_devicons()

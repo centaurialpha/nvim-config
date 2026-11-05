@@ -5,5 +5,7 @@ require('which-key').setup {
     { '<leader>s', group = '[S]earch' },
     { '<leader>f', group = '[F]ind' },
     { '<leader>d', group = '[D]elete' },
+    { '<leader>a', group = '[A]I Claude' },
+    { '<leader>m', group = '[M]arkdown' },
   },
 }

@@ -36,11 +36,6 @@ vim.lsp.config('*', {
   capabilities = require('blink.cmp').get_lsp_capabilities(),
 })
 
--- capabilities globales (cuando agregues autocomplete va acá)
--- vim.lsp.config('*', {
---   capabilities = vim.lsp.protocol.make_client_capabilities(),
--- })
-
 vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
@@ -57,6 +52,10 @@ vim.lsp.config('lua_ls', {
   },
 })
 
+vim.lsp.config('tailwindcss', {
+  filetypes = { 'html', 'css', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+})
+
 vim.lsp.config('ruff', {
   settings = {
     ruff = {
@@ -68,8 +67,7 @@ vim.lsp.config('ruff', {
 })
 vim.lsp.enable 'ruff'
 
--- ty: type checker de Astral (reemplaza pyright)
--- no está en mason-lspconfig todavía, config manual completa
+-- ty: type checker de Astral. Instalado con `uv tool install ty`, no con mason.
 vim.lsp.config('ty', {
   cmd = { 'ty', 'server' },
   filetypes = { 'python' },

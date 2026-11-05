@@ -1,5 +1,7 @@
 local cmp = require 'blink.cmp'
-cmp.build():pwait()
+-- Build async: tras cada update de blink.cmp el build con cargo tarda minutos.
+-- Mientras compila se usa el fuzzy en Lua; al reiniciar ya carga el de Rust.
+cmp.build()
 cmp.setup {
   keymap = { preset = 'default' },
   completion = {
